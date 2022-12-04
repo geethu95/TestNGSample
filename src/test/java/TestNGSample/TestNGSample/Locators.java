@@ -74,4 +74,36 @@ public class Locators extends Base {
 		driver.findElement(By.xpath("//input[@class='form-control' and @id='single-input-field' ]")).sendKeys("test");
 		
 	}
+	
+	@Test()
+	public void startsWith() {
+		driver.findElement(By.xpath("//input[starts-with(@id,'single-input')]")).sendKeys("test");
+		
+		//text
+		driver.findElement(By.xpath("//label[text()='Enter Message']"));
+		
+		//child
+		driver.findElement(By.xpath("//div[@class='form-group']//child::input[@id='single-input-field']"));
+		
+		//locate parent from child xpath
+		driver.findElement(By.xpath("//input[@id='single-input-field']//parent::div"));
+		
+		//locate ancestors
+		driver.findElement(By.xpath("//input[@id='single-input-field']//ancestor::div"));   //locate all ancestors
+		driver.findElement(By.xpath("//input[@id='single-input-field']//ancestor::div[@class='container page']"));  //locate the ancestor with class container page
+		
+		//following
+		driver.findElement(By.xpath("//input[@id='single-input-field']//following::input"));   //all the input labels following the current node will be located
+		driver.findElement(By.xpath("//input[@id='single-input-field']//following::input[@id='value-b']"));
+		
+		//preceding
+		driver.findElement(By.xpath("//input[@id='single-input-field']//preceding::div"));
+		driver.findElement(By.xpath("//input[@id='single-input-field']//preceding::div[@class='container']"));
+		
+		//siblings
+		driver.findElement(By.xpath("//input[@id='single-input-field']//following-sibling::button"));
+		
+		//self
+		driver.findElement(By.xpath("//input[@id='single-input-field']//self::input"));
+	}
 }
